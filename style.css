@@ -1,0 +1,16 @@
+#calculator_screen{
+    width: 50vw;
+    height: 10vh;
+    background-color: aqua;
+}
+#calculator_buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 50vw;
+}
+
+#calculator_buttons div{
+    text-align: center;
+    padding: 40px 20px;
+    background-color: antiquewhite;
+}
