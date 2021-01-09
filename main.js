@@ -13,10 +13,20 @@ Array.from(document.querySelectorAll("#calculator_buttons div")).forEach(element
                 calc(opr, first, second);
                 break;
             case "+":
-                first = document.querySelector("h1").innerHTML;
-                document.querySelector("h1").textContent += "+";
-                oprPressed = true;
-                opr = element.innerHTML;
+                if (oprPressed) {
+                    second = null;
+                    first = document.querySelector("h1").innerHTML;
+                    // console.log(second);
+                    document.querySelector("h1").textContent += "+";
+                    opr = element.innerHTML;
+                } else {
+                    // console.log("here");
+                    first = document.querySelector("h1").innerHTML;
+                    document.querySelector("h1").textContent += "+";
+                    oprPressed = true;
+                    opr = element.innerHTML;
+                }
+
                 break;
             case "-":
                 first = document.querySelector("h1").innerHTML;
@@ -42,12 +52,13 @@ Array.from(document.querySelectorAll("#calculator_buttons div")).forEach(element
                 } else {
                     // oprPressed = false;
                     document.querySelector("h1").textContent += element.innerHTML;
-                    if (second === null && oprPressed === true) {
+                    if (second === null) {
                         second = element.innerHTML;
-                        oprPressed = false;
+                        // oprPressed = false;
 
-                    } else if (second !== null && oprPressed === true){
+                    } else if (second !== null) {
                         second += element.innerHTML;
+
                     }
                 }
                 break;
@@ -60,7 +71,7 @@ function calc(opr, first, second) {
     switch (opr) {
         case "+":
             first = Number(first) + Number(second);
-            console.log(first);
+            // console.log(first);
             break;
         case "-":
             first = Number(first) + Number(second);
@@ -73,7 +84,7 @@ function calc(opr, first, second) {
             break;
 
         default:
-            // console.log(first);
+            console.log("in default");
             // console.log(document.querySelector("h1").textContent);
             break;
     }
