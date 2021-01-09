@@ -11,22 +11,26 @@ Array.from(document.querySelectorAll("#calculator_buttons div")).forEach(element
                 calc(opr, first, second);
             case "+":
                 first =document.querySelector("h1").innerHTML;
+                document.querySelector("h1").textContent+= "+";
                 oprPressed = true;
                 opr = element.innerHTML;
                 console.log(opr);
                 break;
             case "-":
                 first =document.querySelector("h1").innerHTML;
+                document.querySelector("h1").textContent+= "-";
                 oprPressed = true;
                 opr = element.innerHTML;
                 break;
             case "/":
                 first =document.querySelector("h1").innerHTML;
+                document.querySelector("h1").textContent+= "/";
                 oprPressed = true;
                 opr = element.innerHTML;
                 break;
             case "*":
                 first =document.querySelector("h1").innerHTML;
+                document.querySelector("h1").textContent+= "*";
                 oprPressed = true;
                 opr = element.innerHTML;
                 break;
@@ -49,6 +53,7 @@ function calc(opr, first, second) {
     switch (opr) {
         case "+":
             document.querySelector("h1").textContent = parseInt(first) + parseInt(second.slice(9, second.length));
+            document.querySelector("h1").textContent.slice(document.querySelector("h1").textContent.length-1, document.querySelector("h1").textContent.length);
             break;
         case "-":
             document.querySelector("h1").textContent = parseInt(first) - parseInt(second.slice(9, second.length));
@@ -66,7 +71,7 @@ function showResult() {
 
 }
 
-function clear() {
+document.querySelector("button").addEventListener("click",function() {
     inputArray = [];
     document.querySelector("h1").textContent = "";
-}
+});
