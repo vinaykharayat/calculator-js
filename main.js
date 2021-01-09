@@ -13,12 +13,16 @@ Array.from(document.querySelectorAll("#calculator_buttons div")).forEach(element
                 calc(opr, first, second);
                 break;
             case "+":
-                if (oprPressed) {
+                if (oprPressed && element.innerHTML == opr) {
+                    first = calc(opr, first, second);
+                    console.log(first);
+                    console.log(second);
                     second = null;
-                    first = document.querySelector("h1").innerHTML;
-                    // console.log(second);
+                    document.querySelector("h1").textContent = first;
                     document.querySelector("h1").textContent += "+";
                     opr = element.innerHTML;
+                    oprPressed = true;
+                    
                 } else {
                     // console.log("here");
                     first = document.querySelector("h1").innerHTML;
@@ -29,22 +33,61 @@ Array.from(document.querySelectorAll("#calculator_buttons div")).forEach(element
 
                 break;
             case "-":
-                first = document.querySelector("h1").innerHTML;
-                document.querySelector("h1").textContent += "-";
-                oprPressed = true;
-                opr = element.innerHTML;
+                if (oprPressed) {
+                    first = calc(opr, first, second);
+                    console.log(first);
+                    console.log(second);
+                    second = null;
+                    document.querySelector("h1").textContent = first;
+                    document.querySelector("h1").textContent += "-";
+                    opr = element.innerHTML;
+                    oprPressed = true;
+                    
+                } else {
+                    // console.log("here");
+                    first = document.querySelector("h1").innerHTML;
+                    document.querySelector("h1").textContent += "-";
+                    oprPressed = true;
+                    opr = element.innerHTML;
+                }
                 break;
             case "/":
-                first = document.querySelector("h1").innerHTML;
-                document.querySelector("h1").textContent += "/";
-                oprPressed = true;
-                opr = element.innerHTML;
+                if (oprPressed) {
+                    first = calc(opr, first, second);
+                    console.log(first);
+                    console.log(second);
+                    second = null;
+                    document.querySelector("h1").textContent = first;
+                    document.querySelector("h1").textContent += "/";
+                    opr = element.innerHTML;
+                    oprPressed = true;
+                    
+                } else {
+                    // console.log("here");
+                    first = document.querySelector("h1").innerHTML;
+                    document.querySelector("h1").textContent += "/";
+                    oprPressed = true;
+                    opr = element.innerHTML;
+                }
                 break;
             case "*":
-                first = document.querySelector("h1").innerHTML;
-                document.querySelector("h1").textContent += "*";
-                oprPressed = true;
-                opr = element.innerHTML;
+                if (oprPressed) {
+                    first = calc(opr, first, second);
+                    console.log(first);
+                    console.log(second);
+                    second = null;
+                    document.querySelector("h1").textContent = first;
+                    document.querySelector("h1").textContent += "*";
+                    opr = element.innerHTML;
+                    oprPressed = true;
+                    
+                } else {
+                    // console.log("here");
+                    first = document.querySelector("h1").innerHTML;
+                    document.querySelector("h1").textContent += "*";
+                    oprPressed = true;
+                    opr = element.innerHTML;
+                }
                 break;
             default:
                 if (!oprPressed) {
@@ -68,8 +111,10 @@ Array.from(document.querySelectorAll("#calculator_buttons div")).forEach(element
 });
 
 function calc(opr, first, second) {
+    
     switch (opr) {
         case "+":
+            // console.log(first + second);
             first = Number(first) + Number(second);
             // console.log(first);
             break;
@@ -89,9 +134,11 @@ function calc(opr, first, second) {
             break;
     }
     document.querySelector("h1").textContent = Number(first);
-    first = null;
-    second = null;
-    opr = null;
+    return Number(first);
+    // first = null;
+    // second = null;
+    // opr = null;
+
 }
 
 document.querySelector("button").addEventListener("click", function () {
