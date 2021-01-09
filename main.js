@@ -8,6 +8,8 @@ Array.from(document.querySelectorAll("#calculator_buttons div")).forEach(element
     element.addEventListener("click", function () {
         switch (element.innerHTML) {
             case "=":
+                // console.log(first);
+                // console.log(second);
                 calc(opr, first, second);
                 break;
             case "+":
@@ -38,11 +40,14 @@ Array.from(document.querySelectorAll("#calculator_buttons div")).forEach(element
                 if (!oprPressed) {
                     document.querySelector("h1").textContent += element.innerHTML;
                 } else {
+                    // oprPressed = false;
                     document.querySelector("h1").textContent += element.innerHTML;
-                    if (second !== null) {
-                        second += element.innerHTML;
-                    } else {
+                    if (second === null && oprPressed === true) {
                         second = element.innerHTML;
+                        oprPressed = false;
+
+                    } else if (second !== null && oprPressed === true){
+                        second += element.innerHTML;
                     }
                 }
                 break;
@@ -54,26 +59,33 @@ Array.from(document.querySelectorAll("#calculator_buttons div")).forEach(element
 function calc(opr, first, second) {
     switch (opr) {
         case "+":
-            document.querySelector("h1").textContent = parseInt(first) + parseInt(second);
+            first = Number(first) + Number(second);
+            console.log(first);
             break;
         case "-":
-            document.querySelector("h1").textContent = parseInt(first) - parseInt(second);
+            first = Number(first) + Number(second);
             break;
         case "/":
-            document.querySelector("h1").textContent = parseInt(first) / parseInt(second);
+            first = Number(first) + Number(second);
             break;
         case "*":
-            document.querySelector("h1").textContent = parseInt(first) * parseInt(second);
+            first = Number(first) + Number(second);
             break;
 
         default:
-            console.log(first);
-            console.log(document.querySelector("h1").textContent);
+            // console.log(first);
+            // console.log(document.querySelector("h1").textContent);
             break;
     }
+    document.querySelector("h1").textContent = Number(first);
+    first = null;
+    second = null;
+    opr = null;
 }
 
 document.querySelector("button").addEventListener("click", function () {
-    inputArray = [];
+    first = null;
+    second = null;
+    opr = null;
     document.querySelector("h1").textContent = "";
 });
